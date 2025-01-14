@@ -11,7 +11,7 @@ class Solution:
         n = len(matrix)
 
         def getCount(mid):
-            i,j = n-1,1
+            i,j = n-1,0
             count = 0
 
             while i>=0:
@@ -24,23 +24,20 @@ class Solution:
                         count = count + j
                         break
                 i = i - 1
-            
+
             return count
         
         l,r = matrix[0][0],matrix[-1][-1]
 
-        while l<=r:
+        while l<r:
             mid = (l+r)//2
             count = getCount(mid)
-
-            if count > k:
-                r = mid - 1
-            elif count < k:
-                l = mid + 1
+            if count >= k:
+                r = mid
             else:
-                return mid
+                l = mid + 1
             
-        return r
+        return l
 
 # @lc code=end
 
